@@ -40,6 +40,13 @@ export async function getTopPeople() {
   return results
 }
 
+export async function getMovieVideo(movieId) {
+  const {
+    data: { results }
+  } = await api.get(`/movie/${movieId}/videos`)
+  return results[0]
+}
+
 export async function getMovieVideos(movieId) {
   const {
     data: { results }
