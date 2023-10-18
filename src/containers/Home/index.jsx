@@ -8,11 +8,11 @@ import {
   getMovies,
   getPopularSeries,
   getTopMovies,
-  getTopPeople,
+  getPopArtists,
   getTopSeries
 } from '../../services/getData'
 import { getImages } from '../../utils/getImages'
-import { Background, Container, Info, ContainerButtons, Poster } from './styles'
+import { Background, Container, Info, Poster, ContainerButtons } from './styles'
 
 function Home() {
   const [showModal, setShowModal] = useState(false)
@@ -20,8 +20,9 @@ function Home() {
   const [topMovies, setTopMovies] = useState()
   const [topSeries, setTopSeries] = useState()
   const [popularSeries, setPopularSeries] = useState()
-  const [topPeople, setTopPeople] = useState()
+  const [popArtists, setPopArtist] = useState()
   const navigate = useNavigate()
+
   useEffect(() => {
     async function getAllData() {
       Promise.all([
@@ -29,17 +30,18 @@ function Home() {
         getTopMovies(),
         getTopSeries(),
         getPopularSeries(),
-        getTopPeople()
+        getPopArtists()
       ])
-        .then(([movie, topMovies, topSeries, popularSeries, topPeople]) => {
+        .then(([movie, topMovies, topSeries, popularSeries, popArtist]) => {
           setMovie(movie)
           setTopMovies(topMovies)
           setTopSeries(topSeries)
           setPopularSeries(popularSeries)
-          setTopPeople(topPeople)
+          setPopArtist(popArtist)
         })
         .catch((error) => console.error(error))
     }
+
     getAllData()
   }, [])
 
@@ -55,16 +57,18 @@ function Home() {
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
               <ContainerButtons>
-                <Button red onClick={() => navigate(`/detalhe/${movie.id}`)}>
+                <Button
+                  red
+                  color="#e21"
+                  onClick={() => navigate(`/filme/${movie.id}`)}
+                >
                   Assista agora
                 </Button>
-                <Button onClick={() => setShowModal(true)}>
-                  Assista o Trailer
-                </Button>
+                <Button onClick={() => setShowModal(true)}>Trailer</Button>
               </ContainerButtons>
             </Info>
             <Poster>
-              <img alt="capa-do-filme" src={getImages(movie.poster_path)} />
+              <img src={getImages(movie.poster_path)} alt="poster-do-filme" />
             </Poster>
           </Container>
         </Background>
@@ -72,9 +76,9 @@ function Home() {
       {topMovies && <Slider info={topMovies} title={'Top Filmes'} />}
       {topSeries && <Slider info={topSeries} title={'Top Series'} />}
       {popularSeries && (
-        <Slider info={popularSeries} title={'Séries populares'} />
+        <Slider info={popularSeries} title={'Popular Series'} />
       )}
-      {topPeople && <Slider info={topPeople} title={'Top Artistas'} />}v
+      {popArtists && <Slider info={popArtists} title={'Popular Artistas'} />}
     </>
   )
 }

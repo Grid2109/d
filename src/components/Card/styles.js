@@ -5,14 +5,26 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background: inherit;
+  border: none;
+
   img {
-    border-radius: 30px;
-    width: 300px;
-    height: 100%;
+    border-radius: 12px;
+    width: 250px;
+    height: 375px;
+    margin-bottom: 15px;
+    object-fit: cover;
+
+    @media (max-width: 950px) {
+      width: 150px;
+      height: 225px;
+    }
+  }
+  h3 {
+    color: #ededed;
+    font-size: 0.75rem;
   }
 
-  h3 {
-    color: #ffffff;
-    margin-top: 15px;
-  }
+  margin-bottom: 23px;
 `

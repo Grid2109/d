@@ -65,7 +65,7 @@ function Detail({ children, red, ...rest }) {
                   <iframe
                     src={`https://www.youtube.com/embed/${video.key}`}
                     title="Trailer"
-                    height="520px"
+                    height="500px"
                     width="100%"
                   ></iframe>
                 </div>
