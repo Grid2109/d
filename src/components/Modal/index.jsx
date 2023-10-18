@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 import { getMovieVideos } from '../../services/getData'
 import { Container, Background } from './styles'
@@ -18,7 +19,9 @@ function Modal({ movieId, setShowModal }) {
     <Background onClick={() => setShowModal(false)}>
       {video && (
         <Container>
-          <button onClick={() => setShowModal(false)}></button>
+          <button onClick={() => setShowModal(false)}>
+            <AiOutlineCloseCircle />
+          </button>
           <iframe
             height="500px"
             width="100%"

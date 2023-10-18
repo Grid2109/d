@@ -1,3 +1,6 @@
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Card from '../Card'
@@ -13,6 +16,10 @@ function Slider({ info, title }) {
         grabCursor
         spaceBetween={10}
         slidesPerView={'auto'}
+        pagination={{
+          dynamicBullets: true
+        }}
+        modules={[Pagination]}
         className="swiper"
       >
         {info.map((item, index) => (
